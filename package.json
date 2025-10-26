@@ -3,21 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
-  "start": "node server.js",
-  "dev": "nodemon server.js"
-},
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_USERNAME/logistics-company-backend.git"
+    "url": "git+https://github.com/yanistriantos/logistics-company-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/logistics-company-backend/issues"
+    "url": "https://github.com/yanistriantos/logistics-company-backend/issues"
   },
-  "homepage": "https://github.com/YOUR_USERNAME/logistics-company-backend#readme",
+  "homepage": "https://github.com/yanistriantos/logistics-company-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
