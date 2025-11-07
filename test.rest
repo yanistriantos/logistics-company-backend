@@ -1,0 +1,8 @@
+### TEST GET / WEBSITE
+GET http://localhost:5000
+
+### TEST GET / API DATA
+GET http://localhost:5000/api/data
+
+###TEST REGISTER USER 
+POST http://localhost:5000/auth/register
