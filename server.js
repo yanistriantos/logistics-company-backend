@@ -3,6 +3,7 @@
     //IP -> 127.0.0.1:5000
     const dotenv = require('dotenv');
     dotenv.config( { path: './.env'} );
+    const jwt = require('jsonwebtoken');
 
     const express = require('express');//import express
     const app = express(); 
@@ -40,8 +41,8 @@ app.get('/api/data', (req, res) => {
 });
 
 
-// app.use('/', require('./routes/pages') );  //"auth/register" method ="POST"
-// app.use('/auth', require('./routes/auth') );  
+app.use('/', require('./routes/pages') );  //"auth/register" method ="POST"
+app.use('/auth', require('./routes/auth') );  
 
 
 
