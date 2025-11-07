@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
-    const { name, email, password, passwordConfirm } = req.body; //const name = req.body.name 
+    const { username, email, password, passwordConfirm } = req.body; //const name = req.body.name 
 
     //  Check if email already exists and passwords match
     db.query('SELECT email FROM users WHERE email = ?', [email], async(err, results) => {
@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
         let hashedPassword = await bcrypt.hash(password, 10);
         console.log(hashedPassword);
 
-        db.query('INSERT INTO users SET ?', { name: name, email: email, password: hashedPassword }, (err, results) => {
+        db.query('INSERT INTO users SET ?', { username: username, email: email, password: hashedPassword }, (err, results) => {
             if(err){
                 console.log(err);
             } else {
