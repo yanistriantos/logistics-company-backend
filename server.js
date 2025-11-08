@@ -21,15 +21,20 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`);});
 
 //API endpoints 
+
 // app.get('/api/data', (req, res) => {
 //     conole.log('Done');
 //     res.sendStatus(200);
+
 // });
 
 app.use('/', require('./routes/pages') );  //"auth/register" method ="POST"
 app.use('/auth', require('./routes/auth') );  
 
 
-
+// app.use('/api/offices', require('./routes/offices'));
+// app.use('/api/employees', require('./routes/employees'));
+// app.use('/api/clients', require('./routes/clients'));
+// app.use('/api/packages', require('./routes/packages'));
 
 

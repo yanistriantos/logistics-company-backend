@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
-    const { username, email, password, passwordConfirm } = req.body; //const name = req.body.name 
+    const { username, email, password, passwordConfirm } = req.body; //const username = req.body.name 
 
     //  Check if email already exists and passwords match
-    db.query('SELECT email FROM users WHERE email = ?', [email], async(err, results) => {
+    db.query('SELECT *  FROM users WHERE email = ?', [email], async(err, results) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: 'Database error' });
@@ -46,6 +46,10 @@ exports.login = (req, res) =>  {
         if (!matches) {
             return res.status(401).json({ message: 'Incorrect password' });
         }
+         let redirectTo = '/client-dashboard';  
+            if (user.role === 'employee') {
+                redirectTo = '/employee-dashboard';
+            }
         else {
             return res.status(200).json({message: 'Login succesful'});
         }
