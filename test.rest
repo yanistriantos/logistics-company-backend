@@ -16,10 +16,18 @@
 # }
 
 ##TEST LOGIN USER
-POST http://localhost:5000/auth/login
-Content-Type: application/json
+#POST http://localhost:5000/auth/login
+#Content-Type: application/json
 
-{
+#{
+ # "email": "test@mail.com",
+  #"password": "1234"
+# }
+
+curl -X POST http://localhost:5000/employees/addEmployee \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Mladena Kalcheva",
   "email": "test@mail.com",
-  "password": "1234"
-}
+  "role_id": 1
+}'

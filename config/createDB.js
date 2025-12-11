@@ -72,7 +72,7 @@ const dbPromise = require('./db');
         name VARCHAR(100) NOT NULL,
         email VARCHAR(100) DEFAULT NULL,
         role_id int NOT NULL,
-        description VARCHAR(255) DEFAULT NULL
+        description VARCHAR(255) DEFAULT NULL,
       )
       `
     ];

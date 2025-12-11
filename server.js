@@ -1,6 +1,7 @@
 // URL -> http://localhost:5000
 //IP -> 127.0.0.1:5000
     const express = require('express');//import express
+    const cors = require("cors");
     const app = express(); 
 
     const dotenv = require('dotenv');
@@ -10,6 +11,8 @@
     const db = require('./config/db');
     const PORT = 5000;
     app.use(express.json());//middleware to parse json data
+    app.use(cors());
+
 
 //Website endpoints `
 app.get('/', (req, res) => {
@@ -28,12 +31,12 @@ app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`);});
 
 // });
 
-app.use('/', require('./routes/pages') );  //"auth/register" method ="POST"
-app.use('/auth', require('./routes/auth') );  
+// app.use('/', require('./routes/pages') );  //"auth/register" method ="POST"
+// app.use('/auth', require('./routes/auth') );  
 
 
 // app.use('/api/offices', require('./routes/offices'));
-// app.use('/api/employees', require('./routes/employees'));
+app.use('/employees', require('./routes/employees'));
 // app.use('/api/clients', require('./routes/clients'));
 // app.use('/api/packages', require('./routes/packages'));
 
