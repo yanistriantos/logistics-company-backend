@@ -1,10 +1,10 @@
-const dbPromise = require('./db');
+const dbPromise = require("./db");
 
 (async () => {
   try {
     const db = await dbPromise;
 
-    console.log('Creating tables...');
+    console.log("Creating tables...");
 
     const tableQueries = [
       `
@@ -13,7 +13,7 @@ const dbPromise = require('./db');
         username VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        user_type ENUM('client', 'staff') DEFAULT 'client',
+        user_type ENUM('client', 'employee') DEFAULT 'client',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
@@ -74,28 +74,44 @@ const dbPromise = require('./db');
         role_id int NOT NULL,
         description VARCHAR(255) DEFAULT NULL,
       )
-      `
+      `,
     ];
 
     for (const query of tableQueries) {
       await db.query(query);
-      console.log('Table created or already exists');
+      console.log("Table created or already exists");
     }
 
     // 2️⃣ Индекси
-    console.log('Creating indexes (if missing)...');
+    console.log("Creating indexes (if missing)...");
 
     const indexes = [
-      { table: 'users', name: 'idx_users_email', column: 'email' },
-      { table: 'users', name: 'idx_users_username', column: 'username' },
-      { table: 'customers', name: 'idx_customers_email', column: 'email' },
-      { table: 'customers', name: 'idx_customers_user_id', column: 'user_id' },
-      { table: 'customers', name: 'idx_customers_city', column: 'city' },
-      { table: 'packages', name: 'idx_packages_user_id', column: 'user_id' },
-      { table: 'packages', name: 'idx_packages_sender_id', column: 'sender_id' },
-      { table: 'packages', name: 'idx_packages_receiver_id', column: 'receiver_id' },
-      { table: 'packages', name: 'idx_packages_sender_office_id', column: 'sender_office_id' },
-      { table: 'packages', name: 'idx_packages_receiver_office_id', column: 'receiver_office_id' }
+      { table: "users", name: "idx_users_email", column: "email" },
+      { table: "users", name: "idx_users_username", column: "username" },
+      { table: "customers", name: "idx_customers_email", column: "email" },
+      { table: "customers", name: "idx_customers_user_id", column: "user_id" },
+      { table: "customers", name: "idx_customers_city", column: "city" },
+      { table: "packages", name: "idx_packages_user_id", column: "user_id" },
+      {
+        table: "packages",
+        name: "idx_packages_sender_id",
+        column: "sender_id",
+      },
+      {
+        table: "packages",
+        name: "idx_packages_receiver_id",
+        column: "receiver_id",
+      },
+      {
+        table: "packages",
+        name: "idx_packages_sender_office_id",
+        column: "sender_office_id",
+      },
+      {
+        table: "packages",
+        name: "idx_packages_receiver_office_id",
+        column: "receiver_office_id",
+      },
     ];
 
     for (const idx of indexes) {
@@ -113,11 +129,10 @@ const dbPromise = require('./db');
       }
     }
 
-    console.log('All tables and indexes are ready!');
+    console.log("All tables and indexes are ready!");
     await db.end();
-    console.log('Connection closed');
-
+    console.log("Connection closed");
   } catch (err) {
-    console.error('❌ Error:', err.message);
+    console.error("❌ Error:", err.message);
   }
 })();
